@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
+using Spreetail.MultiDictionary.Commands;
 
-namespace Spreetail.MultiDictionary.Test;
+namespace Spreetail.MultiDictionary.Test.Commands;
 
 public class AddCommandTest
 {
@@ -13,15 +14,12 @@ public class AddCommandTest
         const string key = "foo";
         const string value = "bar";
 
-        var mvd = new MultiValueDictionary();
+        var mvd = new Dictionary<string, List<string>>();
 
         new AddCommand(mvd)
             .Do(
-                new Command(
-                    string.Empty,
-                    key,
-                    value
-                )
+                key,
+                value
             );
 
         mvd.Should()
@@ -41,7 +39,7 @@ public class AddCommandTest
         const string value1 = "bar";
         const string value2 = "baz";
 
-        var mvd = new MultiValueDictionary
+        var mvd = new Dictionary<string, List<string>>
         {
             {
                 key, new List<string>
@@ -50,14 +48,12 @@ public class AddCommandTest
                 }
             },
         };
-        
+
         new AddCommand(mvd)
             .Do(
-                new Command(
-                    string.Empty,
-                    key,
-                    value2
-                )
+                key,
+                value2
+
             );
 
         mvd.Should()
@@ -77,7 +73,7 @@ public class AddCommandTest
         const string key = "foo";
         const string value = "bar";
 
-        var mvd = new MultiValueDictionary
+        var mvd = new Dictionary<string, List<string>>
         {
             {
                 key, new List<string>
@@ -89,11 +85,8 @@ public class AddCommandTest
         new Action(() =>
                 new AddCommand(mvd)
                     .Do(
-                        new Command(
-                            string.Empty,
-                            key,
-                            value
-                        )
+                        key,
+                        value
                     )
             )
             .Should()

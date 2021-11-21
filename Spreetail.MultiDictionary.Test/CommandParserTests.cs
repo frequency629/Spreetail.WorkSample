@@ -10,11 +10,11 @@ public class CommandParserTests
     {
         const string action = "myAction";
 
-        new CommandParser()
-            .Parse(() => action)
+        new CommandParser(() => action)
+            .Parse()
             .Should()
             .BeEquivalentTo(
-                new Command(
+                new ParsedCommand(
                     action,
                     string.Empty,
                     string.Empty
@@ -28,11 +28,11 @@ public class CommandParserTests
         const string action = "myAction";
         const string key = "myKey";
 
-        new CommandParser()
-            .Parse(() => $"{action} {key}")
+        new CommandParser(() => $"{action} {key}")
+            .Parse()
             .Should()
             .BeEquivalentTo(
-                new Command(
+                new ParsedCommand(
                     action,
                     key,
                     string.Empty
@@ -47,11 +47,11 @@ public class CommandParserTests
         const string key = "myKey";
         const string value = "myValue";
 
-        new CommandParser()
-            .Parse(() => $"{action} {key} {value}")
+        new CommandParser(() => $"{action} {key} {value}")
+            .Parse()
             .Should()
             .BeEquivalentTo(
-                new Command(
+                new ParsedCommand(
                     action,
                     key,
                     value
@@ -64,11 +64,11 @@ public class CommandParserTests
     [TestCase(null)]
     public void Parse_GivenInvalidCommandString_ReturnsEmptyCommand(string commandString)
     {
-        new CommandParser()
-            .Parse(() => commandString)
+        new CommandParser(() => commandString)
+            .Parse()
             .Should()
             .BeEquivalentTo(
-                new Command(
+                new ParsedCommand(
                     string.Empty,
                     string.Empty,
                     string.Empty
@@ -76,4 +76,6 @@ public class CommandParserTests
             );
 
     }
+
+
 }

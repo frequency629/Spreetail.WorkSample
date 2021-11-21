@@ -1,28 +1,28 @@
-﻿namespace Spreetail.MultiDictionary;
+﻿namespace Spreetail.MultiDictionary.Commands;
 
 public class MembersCommand
 {
-    private readonly MultiValueDictionary dictionary;
+    private readonly Dictionary<string, List<string>> dictionary;
     private readonly Action<string> outputProvider;
 
     public MembersCommand(
-        MultiValueDictionary dictionary,
-        Action<string> outputProvider
+        Dictionary<string, List<string>> dictionary,
+        Action<string?> outputProvider
     )
     {
         this.dictionary = dictionary;
         this.outputProvider = outputProvider;
     }
 
-    public void Do(Command command)
+    public void Do(string key)
     {
-        if (KeyDoesNotExist(command.Key))
+        if (KeyDoesNotExist(key))
         {
             throw new Exception("Key does not exist");
         }
 
         var index = 0;
-        foreach (var value in dictionary[command.Key])
+        foreach (var value in dictionary[key])
         {
             outputProvider($"{++index}) {value}");
         }

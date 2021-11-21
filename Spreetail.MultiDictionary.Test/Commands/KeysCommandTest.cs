@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
+using Spreetail.MultiDictionary.Commands;
 
-namespace Spreetail.MultiDictionary.Test;
+namespace Spreetail.MultiDictionary.Test.Commands;
 
 public class KeysCommandTest
 {
@@ -13,7 +14,7 @@ public class KeysCommandTest
         const string key1 = "foo";
         const string key2 = "baz";
 
-        var mvd = new MultiValueDictionary
+        var mvd = new Dictionary<string, List<string>>
         {
             {
                 key1,
@@ -27,19 +28,13 @@ public class KeysCommandTest
 
         var output = new List<string>();
 
-        var outputProvider = new Action<string>(s =>
+        var outputProvider = new Action<string?>(s =>
         {
-            output.Add(s);
+            output.Add(s ?? string.Empty);
         });
 
         new KeysCommand(mvd, outputProvider)
-            .Do(
-                new Command(
-                    string.Empty,
-                    string.Empty,
-                    string.Empty
-                )
-            );
+            .Do();
 
         output.Should()
             .BeEquivalentTo(new List<string>
@@ -52,23 +47,17 @@ public class KeysCommandTest
     [Test]
     public void Do_GivenEmptyWithKeys_NoOutput()
     {
-        var mvd = new MultiValueDictionary();
+        var mvd = new Dictionary<string, List<string>>();
 
         var output = new List<string>();
 
-        var outputProvider = new Action<string>(s =>
+        var outputProvider = new Action<string?>(s =>
         {
-            output.Add(s);
+            output.Add(s ?? string.Empty);
         });
 
         new KeysCommand(mvd, outputProvider)
-            .Do(
-                new Command(
-                    string.Empty,
-                    string.Empty,
-                    string.Empty
-                )
-            );
+            .Do();
 
         output.Should().BeEmpty();
     }

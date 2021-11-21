@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
+using Spreetail.MultiDictionary.Commands;
 
-namespace Spreetail.MultiDictionary.Test;
+namespace Spreetail.MultiDictionary.Test.Commands;
 
 public class MembersCommandTest
 {
@@ -14,7 +15,7 @@ public class MembersCommandTest
         const string value1 = "bar";
         const string value2 = "baz";
 
-        var mvd = new MultiValueDictionary
+        var mvd = new Dictionary<string, List<string>>
         {
             {
                 key,
@@ -28,22 +29,16 @@ public class MembersCommandTest
 
         var output = new List<string>();
 
-        var outputProvider = new Action<string>(s =>
+        var outputProvider = new Action<string?>(s =>
         {
-            output.Add(s);
+            output.Add(s ?? string.Empty);
         });
 
         new MembersCommand(
                 mvd,
                 outputProvider
             )
-            .Do(
-                new Command(
-                    string.Empty,
-                    key,
-                    string.Empty
-                )
-            );
+            .Do(key);
 
         output.Should()
             .BeEquivalentTo(new List<string>
@@ -58,20 +53,14 @@ public class MembersCommandTest
     {
         const string key = "foo";
 
-        var mvd = new MultiValueDictionary();
+        var mvd = new Dictionary<string, List<string>>();
 
         new Action(() =>
                 new MembersCommand(
                         mvd,
                         _ => {}
                     )
-                    .Do(
-                        new Command(
-                            string.Empty,
-                            key,
-                            string.Empty
-                        )
-                    )
+                    .Do(key)
             )
             .Should()
             .ThrowExactly<Exception>();

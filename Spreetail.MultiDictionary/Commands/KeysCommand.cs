@@ -1,20 +1,20 @@
-﻿namespace Spreetail.MultiDictionary;
+﻿namespace Spreetail.MultiDictionary.Commands;
 
 public class KeysCommand
 {
-    private readonly MultiValueDictionary dictionary;
+    private readonly Dictionary<string, List<string>> dictionary;
     private readonly Action<string> outputProvider;
 
     public KeysCommand(
-        MultiValueDictionary dictionary,
-        Action<string> outputProvider
+        Dictionary<string, List<string>> dictionary,
+        Action<string?> outputProvider
     )
     {
         this.dictionary = dictionary;
         this.outputProvider = outputProvider;
     }
 
-    public void Do(Command command)
+    public void Do()
     {
         var index = 0;
         foreach (var key in dictionary.Keys)
