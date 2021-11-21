@@ -13,7 +13,7 @@ public class Command
         Value = value;
     }
 
-    public string Action { get; init; }
-    public string Key { get; init; }
-    public string Value { get; init; }
+    public string Action { get; }
+    public string Key { get;  }
+    public string Value { get; }
 }
