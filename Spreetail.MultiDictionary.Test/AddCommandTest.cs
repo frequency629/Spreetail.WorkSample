@@ -41,17 +41,16 @@ public class AddCommandTest
         const string value1 = "bar";
         const string value2 = "baz";
 
-        var mvd = new MultiValueDictionary();
-
-        new AddCommand(mvd)
-            .Do(
-                new Command(
-                    string.Empty,
-                    key,
+        var mvd = new MultiValueDictionary
+        {
+            {
+                key, new List<string>
+                {
                     value1
-                )
-            );
-
+                }
+            },
+        };
+        
         new AddCommand(mvd)
             .Do(
                 new Command(
@@ -78,17 +77,15 @@ public class AddCommandTest
         const string key = "foo";
         const string value = "bar";
 
-        var mvd = new MultiValueDictionary();
-
-        new AddCommand(mvd)
-            .Do(
-                new Command(
-                    string.Empty,
-                    key,
+        var mvd = new MultiValueDictionary
+        {
+            {
+                key, new List<string>
+                {
                     value
-                )
-            );
-
+                }
+            }
+        };
         new Action(() =>
                 new AddCommand(mvd)
                     .Do(
