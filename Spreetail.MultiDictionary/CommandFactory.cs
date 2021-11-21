@@ -16,17 +16,17 @@ public class CommandFactory
     )
     {
         this.commandParser = commandParser;
-        valueCommands = new Dictionary<string, Action<string, string>>
+        valueCommands = new Dictionary<string, Action<string, string>>(StringComparer.OrdinalIgnoreCase)
         {
             { "Add", (key, member) => new AddCommand(dictionary).Do(key, member) }
         };
 
-        keyCommands = new Dictionary<string, Action<string>>
+        keyCommands = new Dictionary<string, Action<string>>(StringComparer.OrdinalIgnoreCase)
         {
             { "Members", (key) => new MembersCommand(dictionary, outputProvider).Do(key) }
         };
 
-        objectCommands = new Dictionary<string, Action>
+        objectCommands = new Dictionary<string, Action>(StringComparer.OrdinalIgnoreCase)
         {
             { "Keys", () => new KeysCommand(dictionary, outputProvider).Do() }
         };
@@ -47,7 +47,7 @@ public class CommandFactory
             _ when ParsedCommandIsValueCommand(parsedCommand) =>
                 () => valueCommands[parsedCommand.Action](parsedCommand.Key, parsedCommand.Value),
 
-            _ => throw new Exception()
+            _ => throw new Exception("Unsupported command")
         };
     }
 

@@ -3,6 +3,7 @@
 
 public class MultiValueDictionary
 {
+    private readonly Action<string?> outputProvider;
     private readonly Dictionary<string, List<string>> dictionary = new();
     
     private readonly CommandFactory commandFactory;
@@ -12,6 +13,7 @@ public class MultiValueDictionary
         Action<string?> outputProvider
     )
     {
+        this.outputProvider = outputProvider;
         this.commandFactory = new CommandFactory(
             dictionary, 
             outputProvider,
@@ -22,8 +24,14 @@ public class MultiValueDictionary
 
     public void DoCommand()
     {
-        var command = commandFactory.Get();
-
-        command();
+        try
+        {
+            var command = commandFactory.Get();
+            command();
+        }
+        catch (Exception ex)
+        {
+            outputProvider($"ERROR {ex.Message}");
+        }
     }
 }
