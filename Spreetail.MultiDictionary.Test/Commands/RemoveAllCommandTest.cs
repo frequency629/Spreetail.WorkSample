@@ -6,9 +6,8 @@ using Spreetail.MultiDictionary.Commands;
 
 namespace Spreetail.MultiDictionary.Test.Commands;
 
-internal class RemoveAllCommandTest
+internal class RemoveAllCommandTest : BaseCommandTest
 {
-
     [Test]
     public void Do_GivenKey_RemovesFromDictionary()
     {
@@ -25,7 +24,10 @@ internal class RemoveAllCommandTest
             },
         };
 
-        new RemoveAllCommand(mvd)
+        new RemoveAllCommand(
+                mvd,
+                outputProvider.Write
+            )
             .Do(key);
 
         mvd.Should()
@@ -40,7 +42,10 @@ internal class RemoveAllCommandTest
         var mvd = new Dictionary<string, List<string>>();
 
         new Action(() =>
-                new RemoveAllCommand(mvd)
+                new RemoveAllCommand(
+                        mvd,
+                        outputProvider.Write
+                    )
                     .Do(key)
             )
             .Should()

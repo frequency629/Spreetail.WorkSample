@@ -6,8 +6,9 @@ using Spreetail.MultiDictionary.Commands;
 
 namespace Spreetail.MultiDictionary.Test.Commands;
 
-internal class AddCommandTest
+internal class AddCommandTest : BaseCommandTest
 {
+
     [Test]
     public void Do_GivenNewKey_AddValueToDictionary()
     {
@@ -16,7 +17,10 @@ internal class AddCommandTest
 
         var mvd = new Dictionary<string, List<string>>();
 
-        new AddCommand(mvd)
+        new AddCommand(
+                mvd, 
+                outputProvider.Write
+            )
             .Do(
                 key,
                 value
@@ -49,7 +53,10 @@ internal class AddCommandTest
             },
         };
 
-        new AddCommand(mvd)
+        new AddCommand(
+                mvd,
+                outputProvider.Write
+            )
             .Do(
                 key,
                 value2
@@ -83,7 +90,10 @@ internal class AddCommandTest
             }
         };
         new Action(() =>
-                new AddCommand(mvd)
+                new AddCommand(
+                        mvd,
+                        outputProvider.Write
+                    )
                     .Do(
                         key,
                         value

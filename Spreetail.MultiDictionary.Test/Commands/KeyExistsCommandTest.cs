@@ -5,16 +5,8 @@ using Spreetail.MultiDictionary.Commands;
 
 namespace Spreetail.MultiDictionary.Test.Commands;
 
-internal class KeyExistsCommandTest
+internal class KeyExistsCommandTest : BaseCommandTest
 {
-    private TestableOutputProvider outputProvider = null!;
-
-    [SetUp]
-    public void SetUp()
-    {
-        outputProvider = new TestableOutputProvider();
-    }
-
     [Test]
     public void Do_GivenAnExistingKey_OutputsTrue()
     {

@@ -6,7 +6,7 @@ using Spreetail.MultiDictionary.Commands;
 
 namespace Spreetail.MultiDictionary.Test.Commands;
 
-internal class RemoveCommandTest
+internal class RemoveCommandTest : BaseCommandTest
 {
     [Test]
     public void Do_GivenValueInKeyWithMultipleValues_RemovesValueLeavesKey()
@@ -26,7 +26,10 @@ internal class RemoveCommandTest
             }
         };
 
-        new RemoveCommand(mvd)
+        new RemoveCommand(
+                mvd,
+                outputProvider.Write
+            )
             .Do(
                 key,
                 value1
@@ -58,7 +61,10 @@ internal class RemoveCommandTest
             },
         };
 
-        new RemoveCommand(mvd)
+        new RemoveCommand(
+                mvd,
+                outputProvider.Write
+            )
             .Do(
                 key,
                 value
@@ -77,7 +83,10 @@ internal class RemoveCommandTest
         var mvd = new Dictionary<string, List<string>>();
 
         new Action(() =>
-                new RemoveCommand(mvd)
+                new RemoveCommand(
+                        mvd,
+                        outputProvider.Write
+                    )
                     .Do(
                         key,
                         value
@@ -99,7 +108,10 @@ internal class RemoveCommandTest
         };
 
         new Action(() =>
-                new RemoveCommand(mvd)
+                new RemoveCommand(
+                        mvd,
+                        outputProvider.Write
+                    )
                     .Do(
                         key,
                         value

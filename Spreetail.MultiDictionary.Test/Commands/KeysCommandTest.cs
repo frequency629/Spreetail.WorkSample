@@ -6,16 +6,8 @@ using Spreetail.MultiDictionary.Commands;
 
 namespace Spreetail.MultiDictionary.Test.Commands;
 
-internal class KeysCommandTest
+internal class KeysCommandTest : BaseCommandTest
 {
-    private TestableOutputProvider outputProvider = null!;
-
-    [SetUp]
-    public void SetUp()
-    {
-        outputProvider = new TestableOutputProvider();
-    }
-
     [Test]
     public void Do_GivenDictionaryWithKeys_OutputKeys()
     {

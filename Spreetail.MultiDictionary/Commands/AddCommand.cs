@@ -5,12 +5,15 @@ internal class AddCommand
     public const string CommandText = "Add";
 
     private readonly Dictionary<string, List<string>> dictionary;
+    private readonly Action<string> outputProvider;
 
     public AddCommand(
-        Dictionary<string, List<string>> dictionary
+        Dictionary<string, List<string>> dictionary,
+        Action<string> outputProvider
     )
     {
         this.dictionary = dictionary;
+        this.outputProvider = outputProvider;
     }
 
     public void Do(string key, string value)
@@ -27,6 +30,8 @@ internal class AddCommand
 
         dictionary[key]
             .Add(value);
+
+        outputProvider("Added");
     }
 
     private bool IsDuplicateValue(string key, string value) =>

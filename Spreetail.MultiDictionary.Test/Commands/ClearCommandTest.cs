@@ -5,7 +5,7 @@ using Spreetail.MultiDictionary.Commands;
 
 namespace Spreetail.MultiDictionary.Test.Commands;
 
-internal class ClearCommandTest
+internal class ClearCommandTest : BaseCommandTest
 {
     [Test]
     public void Do_GivenDictionary_RemovesAllKeys()
@@ -25,7 +25,10 @@ internal class ClearCommandTest
             }
         };
 
-        new ClearCommand(mvd)
+        new ClearCommand(
+                mvd,
+                outputProvider.Write
+            )
             .Do();
 
         mvd.Should().BeEmpty();
