@@ -6,7 +6,7 @@ using Spreetail.MultiDictionary.Commands;
 
 namespace Spreetail.MultiDictionary.Test.Commands;
 
-public class MembersCommandTest
+internal class MembersCommandTest
 {
     [Test]
     public void Do_GivenExistingKey_OutputsValues()

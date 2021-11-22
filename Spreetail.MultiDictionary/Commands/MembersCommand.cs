@@ -1,6 +1,6 @@
 ﻿namespace Spreetail.MultiDictionary.Commands;
 
-public class MembersCommand
+internal class MembersCommand
 {
     private readonly Dictionary<string, List<string>> dictionary;
     private readonly Action<string> outputProvider;

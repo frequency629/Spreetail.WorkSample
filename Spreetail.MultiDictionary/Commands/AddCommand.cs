@@ -1,6 +1,6 @@
 ﻿namespace Spreetail.MultiDictionary.Commands;
 
-public class AddCommand
+internal class AddCommand
 {
     private readonly Dictionary<string, List<string>> dictionary;
 

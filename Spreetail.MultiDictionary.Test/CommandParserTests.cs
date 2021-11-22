@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Spreetail.MultiDictionary.Test;
 
-public class CommandParserTests
+internal class CommandParserTests
 {
     [Test]
     public void Parse_GivenCommandStringWithOnlyAction_ReturnsCommand()

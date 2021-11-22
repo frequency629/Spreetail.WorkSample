@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Spreetail.MultiDictionary.Test.Commands;
+namespace Spreetail.MultiDictionary.Test;
 
 internal class TestableOutputProvider
 {

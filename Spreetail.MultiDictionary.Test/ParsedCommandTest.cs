@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace Spreetail.MultiDictionary.Test;
 
-public class ParsedCommandTest
+internal class ParsedCommandTest
 {
     [TestCase("Action", "", "", ExpectedResult = true)]
     [TestCase("Action", "Key", "", ExpectedResult = false)]

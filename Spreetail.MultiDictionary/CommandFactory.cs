@@ -2,7 +2,7 @@
 
 namespace Spreetail.MultiDictionary;
 
-public class CommandFactory
+internal class CommandFactory
 {
     private readonly CommandParser commandParser;
     private readonly Dictionary<string, Action<string, string>> valueCommands;

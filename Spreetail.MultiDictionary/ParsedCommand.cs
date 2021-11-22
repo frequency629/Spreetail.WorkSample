@@ -1,6 +1,6 @@
 ﻿namespace Spreetail.MultiDictionary;
 
-public class ParsedCommand
+internal class ParsedCommand
 {
     public ParsedCommand(
         string action, 

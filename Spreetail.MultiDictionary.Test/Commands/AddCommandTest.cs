@@ -6,7 +6,7 @@ using Spreetail.MultiDictionary.Commands;
 
 namespace Spreetail.MultiDictionary.Test.Commands;
 
-public class AddCommandTest
+internal class AddCommandTest
 {
     [Test]
     public void Do_GivenNewKey_AddValueToDictionary()

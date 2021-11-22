@@ -1,6 +1,6 @@
 ﻿namespace Spreetail.MultiDictionary;
 
-public class CommandParser
+internal class CommandParser
 {
     private readonly Func<string?> inputProvider;
 

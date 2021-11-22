@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
@@ -17,7 +16,7 @@ internal class KeyExistsCommandTest
     }
 
     [Test]
-    public void Do_GivenAnExsitingKey_OutputsTrue()
+    public void Do_GivenAnExistingKey_OutputsTrue()
     {
         const string key = "foo";
 
@@ -33,7 +32,7 @@ internal class KeyExistsCommandTest
     }
 
     [Test]
-    public void Do_GivenAnExsitingKey_OutputsFalse()
+    public void Do_GivenAnExistingKey_OutputsFalse()
     {
         const string key = "foo";
 
