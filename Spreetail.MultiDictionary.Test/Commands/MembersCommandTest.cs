@@ -8,6 +8,14 @@ namespace Spreetail.MultiDictionary.Test.Commands;
 
 internal class MembersCommandTest
 {
+    private TestableOutputProvider outputProvider = null!;
+
+    [SetUp]
+    public void SetUp()
+    {
+        outputProvider = new TestableOutputProvider();
+    }
+
     [Test]
     public void Do_GivenExistingKey_OutputsValues()
     {
@@ -26,26 +34,17 @@ internal class MembersCommandTest
                 }
             }
         };
-
-        var output = new List<string>();
-
-        var outputProvider = new Action<string?>(s =>
-        {
-            output.Add(s ?? string.Empty);
-        });
+        
 
         new MembersCommand(
                 mvd,
-                outputProvider
+                outputProvider.Write
             )
             .Do(key);
 
-        output.Should()
-            .BeEquivalentTo(new List<string>
-            {
-                $"1) {value1}",
-                $"2) {value2}",
-            });
+        outputProvider.Output
+            .Should()
+            .BeEquivalentTo($"1) {value1}{Environment.NewLine}2) {value2}");
     }
 
     [Test]

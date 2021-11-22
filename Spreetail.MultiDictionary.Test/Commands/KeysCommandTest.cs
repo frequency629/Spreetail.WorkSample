@@ -8,6 +8,14 @@ namespace Spreetail.MultiDictionary.Test.Commands;
 
 internal class KeysCommandTest
 {
+    private TestableOutputProvider outputProvider = null!;
+
+    [SetUp]
+    public void SetUp()
+    {
+        outputProvider = new TestableOutputProvider();
+    }
+
     [Test]
     public void Do_GivenDictionaryWithKeys_OutputKeys()
     {
@@ -25,40 +33,24 @@ internal class KeysCommandTest
                 new List<string>()
             },
         };
+        
 
-        var output = new List<string>();
-
-        var outputProvider = new Action<string?>(s =>
-        {
-            output.Add(s ?? string.Empty);
-        });
-
-        new KeysCommand(mvd, outputProvider)
+        new KeysCommand(mvd, outputProvider.Write)
             .Do();
 
-        output.Should()
-            .BeEquivalentTo(new List<string>
-            {
-                $"1) {key1}",
-                $"2) {key2}",
-            });
+        outputProvider.Output
+            .Should()
+            .BeEquivalentTo($"1) {key1}{Environment.NewLine}2) {key2}");
     }
 
     [Test]
     public void Do_GivenEmptyWithKeys_NoOutput()
     {
         var mvd = new Dictionary<string, List<string>>();
-
-        var output = new List<string>();
-
-        var outputProvider = new Action<string?>(s =>
-        {
-            output.Add(s ?? string.Empty);
-        });
-
-        new KeysCommand(mvd, outputProvider)
+        
+        new KeysCommand(mvd, outputProvider.Write)
             .Do();
 
-        output.Should().BeEmpty();
+        outputProvider.Output.Should().BeEquivalentTo(string.Empty);
     }
 }

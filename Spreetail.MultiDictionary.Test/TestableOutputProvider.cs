@@ -13,6 +13,6 @@ internal class TestableOutputProvider
         output = new StringBuilder();
     }
     
-    public void Write(string value) => 
+    public void Write(string? value) => 
         output.AppendLine(value);
 }

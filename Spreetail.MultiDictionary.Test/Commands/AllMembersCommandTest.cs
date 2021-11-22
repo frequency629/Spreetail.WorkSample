@@ -31,7 +31,9 @@ internal class AllMembersCommandTest
         new AllMembersCommand(mvd, outputProvider.Write)
             .Do();
 
-        outputProvider.Output.Should().BeEquivalentTo($"bar{Environment.NewLine}baz");
+        outputProvider.Output
+            .Should()
+            .BeEquivalentTo($"{value1}{Environment.NewLine}{value2}");
     }
 
     [Test]
@@ -51,18 +53,21 @@ internal class AllMembersCommandTest
         new AllMembersCommand(mvd, outputProvider.Write)
             .Do();
 
-        outputProvider.Output.Should().BeEquivalentTo($"bar{Environment.NewLine}baz{Environment.NewLine}bar{Environment.NewLine}baz");
+        outputProvider.Output
+            .Should()
+            .BeEquivalentTo($"{value1}{Environment.NewLine}{value2}{Environment.NewLine}{value1}{Environment.NewLine}{value2}");
     }
 
     [Test]
     public void Do_GivenEmptyDictionary_OutputsNothing()
     {
-
         var mvd = new Dictionary<string, List<string>>();
 
         new AllMembersCommand(mvd, outputProvider.Write)
             .Do();
 
-        outputProvider.Output.Should().BeEquivalentTo(string.Empty);
+        outputProvider.Output
+            .Should()
+            .BeEquivalentTo(string.Empty);
     }
 }
