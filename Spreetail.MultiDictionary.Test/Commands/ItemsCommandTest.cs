@@ -25,7 +25,7 @@ internal class ItemsCommandTest : BaseCommandTest
 
         outputProvider.Output
             .Should()
-            .BeEquivalentTo(@$"{key}: {value1}{Environment.NewLine}{key}: {value2}");
+            .BeEquivalentTo(@$"1) {key}: {value1}{Environment.NewLine}2) {key}: {value2}");
     }
 
     [Test]
@@ -47,7 +47,7 @@ internal class ItemsCommandTest : BaseCommandTest
 
         outputProvider.Output
             .Should()
-            .BeEquivalentTo($"{key1}: {value1}{Environment.NewLine}{key1}: {value2}{Environment.NewLine}{key2}: {value1}{Environment.NewLine}{key2}: {value2}");
+            .BeEquivalentTo($"1) {key1}: {value1}{Environment.NewLine}2) {key1}: {value2}{Environment.NewLine}3) {key2}: {value1}{Environment.NewLine}4) {key2}: {value2}");
     }
 
     [Test]

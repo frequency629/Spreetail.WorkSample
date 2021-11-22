@@ -19,11 +19,12 @@ internal class ItemsCommand
 
     public void Do()
     {
+        var index = 0;
         foreach (var key in dictionary.Keys)
         {
             foreach (var value in dictionary[key])
             {
-                outputProvider($"{key}: {value}");
+                outputProvider($"{++index}) {key}: {value}");
             }
         }
     }

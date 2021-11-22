@@ -4,11 +4,11 @@ namespace Spreetail.MultiDictionary.Test.Commands;
 
 internal class BaseCommandTest
 {
-    private protected TestableOutputProvider outputProvider = null!;
+    private protected OutputProvider outputProvider = null!;
 
     [SetUp]
     public void SetUp()
     {
-        outputProvider = new TestableOutputProvider();
+        outputProvider = new OutputProvider();
     }
 }

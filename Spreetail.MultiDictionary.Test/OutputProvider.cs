@@ -2,17 +2,19 @@ using System.Text;
 
 namespace Spreetail.MultiDictionary.Test;
 
-internal class TestableOutputProvider
+internal class OutputProvider
 {
     private readonly StringBuilder output;
 
     public string Output => output.ToString().Trim();
 
-    public TestableOutputProvider()
+    public OutputProvider()
     {
         output = new StringBuilder();
     }
-    
-    public void Write(string? value) => 
+
+    public void Write(string? value) =>
         output.AppendLine(value);
+
+    public void ClearOutput() => output.Clear();
 }

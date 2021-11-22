@@ -25,7 +25,7 @@ internal class AllMembersCommandTest : BaseCommandTest
 
         outputProvider.Output
             .Should()
-            .BeEquivalentTo($"{value1}{Environment.NewLine}{value2}");
+            .BeEquivalentTo($"1) {value1}{Environment.NewLine}2) {value2}");
     }
 
     [Test]
@@ -47,7 +47,7 @@ internal class AllMembersCommandTest : BaseCommandTest
 
         outputProvider.Output
             .Should()
-            .BeEquivalentTo($"{value1}{Environment.NewLine}{value2}{Environment.NewLine}{value1}{Environment.NewLine}{value2}");
+            .BeEquivalentTo($"1) {value1}{Environment.NewLine}2) {value2}{Environment.NewLine}3) {value1}{Environment.NewLine}4) {value2}");
     }
 
     [Test]

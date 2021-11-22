@@ -18,11 +18,12 @@ internal class AllMembersCommand
 
     public void Do()
     {
+        var index = 0;
         foreach (var list in dictionary.Values)
         {
             foreach (var value in list)
             {
-                outputProvider(value);
+                outputProvider($"{++index}) {value}");
             }
         }
     }
