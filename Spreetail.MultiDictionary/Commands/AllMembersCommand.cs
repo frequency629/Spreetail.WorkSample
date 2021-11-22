@@ -2,6 +2,8 @@
 
 internal class AllMembersCommand
 {
+    public const string CommandText = "AllMembers";
+
     private readonly Dictionary<string, List<string>> dictionary;
     private readonly Action<string> outputProvider;
 

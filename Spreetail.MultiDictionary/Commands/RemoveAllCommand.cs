@@ -2,6 +2,9 @@
 
 internal class RemoveAllCommand
 {
+    public const string CommandText = "RemoveAll";
+
+
     private readonly Dictionary<string, List<string>> dictionary;
 
     public RemoveAllCommand(

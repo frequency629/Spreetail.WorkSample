@@ -2,6 +2,9 @@
 
 internal class ClearCommand
 {
+    public const string CommandText = "Clear";
+
+
     private readonly Dictionary<string, List<string>> dictionary;
 
     public ClearCommand(

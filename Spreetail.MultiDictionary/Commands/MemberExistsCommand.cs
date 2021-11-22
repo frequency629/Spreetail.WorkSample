@@ -2,6 +2,9 @@
 
 internal class MemberExistsCommand
 {
+    public const string CommandText = "MemberExists";
+
+
     private readonly Dictionary<string, List<string>> dictionary;
     private readonly Action<string> outputProvider;
 

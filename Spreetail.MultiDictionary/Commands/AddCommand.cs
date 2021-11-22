@@ -2,6 +2,8 @@
 
 internal class AddCommand
 {
+    public const string CommandText = "Add";
+
     private readonly Dictionary<string, List<string>> dictionary;
 
     public AddCommand(

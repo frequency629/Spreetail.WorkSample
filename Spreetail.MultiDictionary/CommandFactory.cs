@@ -18,17 +18,24 @@ internal class CommandFactory
         this.commandParser = commandParser;
         valueCommands = new Dictionary<string, Action<string, string>>(StringComparer.OrdinalIgnoreCase)
         {
-            { "Add", (key, member) => new AddCommand(dictionary).Do(key, member) }
+            { AddCommand.CommandText, (key, member) => new AddCommand(dictionary).Do(key, member) },
+            { MemberExistsCommand.CommandText, (key, member) => new MemberExistsCommand(dictionary, outputProvider).Do(key, member) },
+            { RemoveCommand.CommandText, (key, member) => new RemoveCommand(dictionary).Do(key, member) },
         };
 
         keyCommands = new Dictionary<string, Action<string>>(StringComparer.OrdinalIgnoreCase)
         {
-            { "Members", (key) => new MembersCommand(dictionary, outputProvider).Do(key) }
+            { KeyExistsCommand.CommandText, (key) => new KeyExistsCommand(dictionary, outputProvider).Do(key) },
+            { MembersCommand.CommandText, (key) => new MembersCommand(dictionary, outputProvider).Do(key) },
+            { RemoveAllCommand.CommandText, (key) => new RemoveAllCommand(dictionary).Do(key) },
         };
 
         objectCommands = new Dictionary<string, Action>(StringComparer.OrdinalIgnoreCase)
         {
-            { "Keys", () => new KeysCommand(dictionary, outputProvider).Do() }
+            { AllMembersCommand.CommandText, () => new AllMembersCommand(dictionary, outputProvider).Do() },
+            { ClearCommand.CommandText, () => new ClearCommand(dictionary).Do() },
+            { ItemsCommand.CommandText, () => new ItemsCommand(dictionary, outputProvider).Do() },
+            { KeysCommand.CommandText, () => new KeysCommand(dictionary, outputProvider).Do() },
         };
     }
 

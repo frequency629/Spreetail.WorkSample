@@ -2,6 +2,9 @@
 
 internal class KeysCommand
 {
+    public const string CommandText = "Keys";
+
+
     private readonly Dictionary<string, List<string>> dictionary;
     private readonly Action<string> outputProvider;
 

@@ -2,6 +2,9 @@
 
 internal class ItemsCommand
 {
+    public const string CommandText = "Items";
+
+
     private readonly Dictionary<string, List<string>> dictionary;
     private readonly Action<string> outputProvider;
 

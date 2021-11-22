@@ -2,6 +2,9 @@
 
 internal class MembersCommand
 {
+    public const string CommandText = "Members";
+
+
     private readonly Dictionary<string, List<string>> dictionary;
     private readonly Action<string> outputProvider;
 

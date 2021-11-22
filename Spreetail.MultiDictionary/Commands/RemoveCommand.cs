@@ -2,6 +2,8 @@
 
 internal class RemoveCommand
 {
+    public const string CommandText = "Remove";
+    
     private readonly Dictionary<string, List<string>> dictionary;
 
     public RemoveCommand(
